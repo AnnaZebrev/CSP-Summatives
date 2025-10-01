@@ -6,12 +6,11 @@ trtl.addshape("heart", ((0,5), (2,7), (3,8), (5,9), (6,9), (7,9), (8,8.5), (9,8)
 #welcome users and introduce them to the activity
 print("Welcome user! Let's draw a picture!")
 
+#create looping variable for main loop
 answer = "y"
 
 #create a drawing loop
 while answer=="y":
-     
-
     #create background
     trtl.teleport(-185,-10)
 
@@ -35,10 +34,7 @@ while answer=="y":
         trtl.forward(800)
         trtl.right(190)
 
-        
-    
    #pick a heart color
-   
     heart_color = trtl.textinput("Choose a color for a heart", "color:")
 
     #create heart turtle
@@ -53,10 +49,13 @@ while answer=="y":
     new_shape = trtl.textinput("Pick a shape", "circle or turtle?")
 
     #pick color for first ring
-    color1 = trtl.textinput("Pick a color", "color:")
+    color1 = trtl.textinput("Pick a color", "color 1:")
 
     #pick color of second ring
-    color2 = trtl.textinput("Pick another color", "color:")
+    color2 = trtl.textinput("Pick another color", "color 2:")
+
+    #pick color of third ring
+    color3 = trtl.textinput("Pick final color", "color 3:")
 
     #draw ring 1 of the picked shape
     trtl.color(color1)
@@ -84,6 +83,18 @@ while answer=="y":
         trtl.pendown()
         trtl.stamp()
 
+    #draw ring 3 of picked shape
+    trtl.color(color3)
+    trtl.penup()
+    trtl.goto()
+    trtl.shape(new_shape)
+    trtl.pendown()
+    for t in range(18):
+        trtl.right(20)
+        trtl.penup()
+        trtl.forward(30)
+        trtl.pendown()
+        trtl.stamp()
 
 
     #ask if the user wants to draw again
