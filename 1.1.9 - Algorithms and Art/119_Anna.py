@@ -10,9 +10,35 @@ answer = "y"
 
 #create a drawing loop
 while answer=="y":
+     
 
+    #create background
+    trtl.teleport(-185,-10)
 
-    #pick a heart color
+    for line in range(36):
+        trtl.speed(15)
+        trtl.color("CornflowerBlue")
+        trtl.forward(375)
+        trtl.right(190)
+
+    trtl.teleport(-248,-15)
+
+    for line in range(36):
+        trtl.color("DarkSeaGreen2")
+        trtl.forward(500)
+        trtl.right(190)
+
+    trtl.teleport(-397, -30)
+
+    for line in range(36):
+        trtl.color("CadetBlue1")
+        trtl.forward(800)
+        trtl.right(190)
+
+        
+    
+   #pick a heart color
+   
     heart_color = trtl.textinput("Choose a color for a heart", "color:")
 
     #create heart turtle
@@ -26,16 +52,37 @@ while answer=="y":
     #pick a shape to go around the heart
     new_shape = trtl.textinput("Pick a shape", "circle or turtle?")
 
-    #draw a ring of the picked shape
+    #pick color for first ring
+    color1 = trtl.textinput("Pick a color", "color:")
+
+    #pick color of second ring
+    color2 = trtl.textinput("Pick another color", "color:")
+
+    #draw ring 1 of the picked shape
+    trtl.color(color1)
     trtl.penup()
-    trtl.goto(10,85)
+    trtl.goto(15,60)
+    trtl.shape(new_shape)
+    trtl.pendown()
+    for t in range(12):
+        trtl.right(30)
+        trtl.penup()
+        trtl.forward(30)
+        trtl.pendown()
+        trtl.stamp()
+
+    #draw ring 2 of picked shape
+    trtl.color(color2)
+    trtl.penup()
+    trtl.goto(15,90)
     trtl.shape(new_shape)
     trtl.pendown()
     for t in range(18):
         trtl.right(20)
+        trtl.penup()
         trtl.forward(30)
+        trtl.pendown()
         trtl.stamp()
-
 
 
 
@@ -47,7 +94,7 @@ while answer=="y":
 
 #hide turtle and leave a goodbye message
 trtl.hideturtle()
-trtl.write("Thanks for drawing!")
+trtl.write("Thanks for drawing!", font=("Arial", 24, "normal"))
 
 
 #keep screen after program runs
