@@ -86,13 +86,13 @@ while answer=="y":
     #draw ring 3 of picked shape
     trtl.color(color3)
     trtl.penup()
-    trtl.goto()
+    trtl.goto(20, 120)
     trtl.shape(new_shape)
     trtl.pendown()
     for t in range(18):
         trtl.right(20)
         trtl.penup()
-        trtl.forward(30)
+        trtl.forward(40)
         trtl.pendown()
         trtl.stamp()
 
