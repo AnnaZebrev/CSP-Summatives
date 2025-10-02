@@ -1,13 +1,30 @@
+#import turtle module
 import turtle as trtl
+
+#import random module
+import random
 
 #create a heart shaped turtle
 trtl.addshape("heart", ((0,5), (2,7), (3,8), (5,9), (6,9), (7,9), (8,8.5), (9,8), (10,6.5), (11,4), (10.5,2), (9.5,0), (0, -11), (-9.5,0), (-10.5,2), (-11,4), (-10,6.5), (-9,8), (-8,8.5), (-7,9), (-6,9), (-5,9), (-3,8), (-2,7)))
 
 #welcome users and introduce them to the activity
-print("Welcome user! Let's draw a picture!")
+trtl.hideturtle()
+trtl.write("Welcome user! Let's draw a picture!", font=("Arial", 20, "normal"))
+
+#create a list of colors for the background
+colors = ["CornflowerBlue", "DarkSeaGreen2", "CadetBlue1", "Aquamarine", "DarkSeaGreen1", "CadetBlue2", "MediumAquamarine", "LightSteelBlue", "GreenYellow", "LightBlue", "LightBlue1", "LightCyan", "LightCyan3", "LightGreen", "Lavender", "LavenderBlush", "Thistle", "Plum"]
 
 #create looping variable for main loop
-answer = "y"
+draw = trtl.textinput("Begin?", "y/n?")
+draw = draw.lower()
+if draw == "y":
+    answer = "y"
+else:
+    answer = "n"
+
+#clear welcome screen and show turtle
+trtl.clearscreen()
+trtl.showturtle()
 
 #create a drawing loop
 while answer=="y":
@@ -16,26 +33,33 @@ while answer=="y":
 
     for line in range(36):
         trtl.speed(15)
-        trtl.color("CornflowerBlue")
+        trtl.color(random.choice(colors))
         trtl.forward(375)
         trtl.right(190)
 
     trtl.teleport(-248,-15)
 
     for line in range(36):
-        trtl.color("DarkSeaGreen2")
+        trtl.color(random.choice(colors))
         trtl.forward(500)
         trtl.right(190)
 
     trtl.teleport(-397, -30)
 
     for line in range(36):
-        trtl.color("CadetBlue1")
+        trtl.color(random.choice(colors))
         trtl.forward(800)
         trtl.right(190)
 
    #pick a heart color
-    heart_color = trtl.textinput("Choose a color for a heart", "color:")
+    is_error = False
+    while not is_error:
+        heart_color = trtl.textinput("Choose a color for a heart", "color:")
+        try:
+            trtl.color(heart_color)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
 
     #create heart turtle
     heart = trtl.Turtle(shape="heart")
@@ -46,16 +70,44 @@ while answer=="y":
     heart.turtlesize(3)
 
     #pick a shape to go around the heart
-    new_shape = trtl.textinput("Pick a shape", "circle or turtle?")
+    is_error = False
+    while not is_error:
+        new_shape = trtl.textinput("Pick a shape", "circle or turtle?")
+        try:
+            trtl.shape(new_shape)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
 
     #pick color for first ring
-    color1 = trtl.textinput("Pick a color", "color 1:")
+    is_error = False
+    while not is_error:
+        color1 = trtl.textinput("Pick a color", "color 1:")
+        try:
+            trtl.color(color1)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
 
     #pick color of second ring
-    color2 = trtl.textinput("Pick another color", "color 2:")
+    is_error = False
+    while not is_error:
+        color2 = trtl.textinput("Pick another color", "color 2:")
+        try:
+            trtl.color(color2)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
 
     #pick color of third ring
-    color3 = trtl.textinput("Pick final color", "color 3:")
+    is_error = False
+    while not is_error:
+        color3 = trtl.textinput("Pick final color", "color 3:")
+        try:
+            trtl.color(color3)
+            is_error = True
+        except trtl.TurtleGraphicsError:
+            is_error = False
 
     #draw ring 1 of the picked shape
     trtl.color(color1)
@@ -96,7 +148,6 @@ while answer=="y":
         trtl.pendown()
         trtl.stamp()
 
-
     #ask if the user wants to draw again
     answer = trtl.textinput("Would you like to draw again?", "y/n?")
 
@@ -106,7 +157,6 @@ while answer=="y":
 #hide turtle and leave a goodbye message
 trtl.hideturtle()
 trtl.write("Thanks for drawing!", font=("Arial", 24, "normal"))
-
 
 #keep screen after program runs
 wn = trtl.Screen()
