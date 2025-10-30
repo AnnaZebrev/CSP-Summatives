@@ -2,47 +2,56 @@ import turtle as trtl
 import random
 #import leaderboard
 
+font_setup = ("Arial",26,"normal")
+   
+
 play = False
+wn = trtl.Screen()
 
 #Start Screen
 
-#Ask if user wants to play
+#Tell the user how to start
+trtl.hideturtle()
+trtl.teleport(-45,45)
+trtl.write("Click the turtle to play!" , font=font_setup)
 
-yes_turtle = trtl.Turtle(shape="turtle")
-yes_turtle.turtlesize(4)
-yes_turtle.teleport(-60,0)
-
-no_turtle = trtl.Turtle(shape="turtle")
-no_turtle.turtlesize(4)
-no_turtle.teleport(60,0)
+play_turtle = trtl.Turtle(shape="turtle")
+play_turtle.color("VioletRed3")
+play_turtle.turtlesize(4)
 
 
-'''
-start = trtl.textinput("Would you like to play?", "y/n?")
-start = start.lower()
-while start != "y" and start != "n":
-    start = trtl.textinput("Please type y or n", "y/n?")
-if start == "y":
-    play = True #while loop for game play
-if start == "n":
-    trtl.hideturtle()
-    trtl.write("Goodbye!")
-'''
-
-while play == True:
-
+def start_click(x,y):
+    trtl.clearscreen()
+    global play
     #Ask user name
     player_name = trtl.textinput("Name", "Enter your name")
+    play = True
 
     while "," in player_name or len(player_name)==0:
         player_name = trtl.textinput("Name", "Please do not use a comma, Enter your name")
 
+#create leaderboard
+leaderboard_file_name = "125_leaderboard.txt"
+leader_names_list = []
+leader_scores_list = []
+
+#start game
+play_turtle.onclick(start_click)
+
+while play == True:
 #Add background and turtle images
 
+#screen setup
+    screen_width = 400 #set width of screen
+    screen_height = 400 #set height of screen
+
+        #Create turtle image instead of shape
+    mole_image = "mole.gif"
+    wn.addshape(mole_image)
+    mole = trtl.Turtle(shape = mole_image)
+
     #Main background
-
-
-    #Create turtle image instead of shape
+    wn.bgpic("mole_background.gif")
 
 #Add randomization to turtle movement
 
@@ -57,7 +66,7 @@ while play == True:
 
     #Add/Subtract
 
-    #Create leaderboard
+    #Update leaderboard
 
     #Placement
 
@@ -71,5 +80,4 @@ while play == True:
 
     #Restart loop or say goodbye
 
-wn = trtl.Screen()
 wn.mainloop()
