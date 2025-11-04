@@ -116,6 +116,7 @@ def draw_leaderboard(high_scorer, leader_names, leader_scores, turtle_object, pl
             turtle_object.color("peru")
             turtle_object.stamp()
         turtle_object.color("black")
+        turtle_object.hideturtle()
         turtle_object.write(str(index + 1) + "\t" + leader_names[index] + "\t" + str(leader_scores[index]), font=font_setup)
         turtle_object.penup()
         turtle_object.goto(-160,int(turtle_object.ycor())-50)

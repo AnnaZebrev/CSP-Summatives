@@ -4,7 +4,7 @@ import leaderboard as lb
 
 font_setup = ("Arial",40,"normal")
 score = 0
-timer = 3
+timer = 15
 counter_interval = 1000
 timer_up = False
 
@@ -37,15 +37,14 @@ counter.goto(-230,165)
 def start_click(x,y):
     trtl.clearscreen()
     global play
+    global player_name
     #Ask user name
     player_name = trtl.textinput("Name", "Enter your name")
-    
 
     while "," in player_name or len(player_name)==0:
         player_name = trtl.textinput("Name", "Please do not use a comma, Enter your name")
     start()
     score_writer.write("Score: " +str(score), font=font_setup)
-    
 
 #create leaderboard
 leaderboard_file_name = "a125_leaderboard.txt"
@@ -54,8 +53,6 @@ leader_scores_list = []
 
 #start game
 play_turtle.onclick(start_click)
-
-
 
 def start():
 #Add background and turtle images
@@ -81,7 +78,7 @@ def start():
 
 #Add randomization to turtle movement
 
-    #Make list of specific locations based on background and then pick a random location from the list
+#Make list of specific locations based on background and then pick a random location from the list
 def move_mole():
     global mole
     mole_xpositions = [1, -211, 211, 0, -210, 210]
@@ -92,6 +89,7 @@ def move_mole():
     mole.teleport(xcor, ycor)
     mole.showturtle()
 
+#start countdown
 def countdown():
   global counter
   global timer, timer_up
@@ -105,10 +103,10 @@ def countdown():
     timer -= 1
     counter.getscreen().ontimer(countdown, counter_interval)
 
+#chnage score and move mole when clicked
 def mole_clicked(x,y):
     change_score()
     move_mole()
-
 
 #Score
     #Add/Subtract
@@ -130,6 +128,7 @@ def manage_leaderboard():
     leader_scores_list = lb.get_scores(leaderboard_file_name)
 
   # show the leaderboard with or without the current player
+    trtl.clearscreen()
     if (len(leader_scores_list) < 5 or score >= leader_scores_list[4]):
         lb.update_leaderboard(leaderboard_file_name, leader_names_list, leader_scores_list, player_name, score)
         lb.draw_leaderboard(True, leader_names_list, leader_scores_list, mole, score)
@@ -137,16 +136,5 @@ def manage_leaderboard():
     else:
         lb.draw_leaderboard(False, leader_names_list, leader_scores_list, mole, score)
 
-    #Placement
-
-    #Create medals to be earned for high enough scores **Optional**
-
-#Ending/Restart
-
-    #Create ending screen with leaderboard and score
-
-    #Ask user if they want to play again
-
-    #Restart loop or say goodbye
 
 wn.mainloop()
